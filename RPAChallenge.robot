@@ -21,10 +21,6 @@ ${start}            //button[text()='Start']
 ${Download_Dir}     ${CURDIR}${/}downloads
 
 *** Keywords ***
-Create Download Directory
-    [Arguments]    ${Download_Dir}
-    Create Directory        ${Download_Dir}    
-
 Open Browser
     New Browser    chromium    headless=False    downloadsPath=${Download_Dir} 
     New Context    acceptDownloads=True 
@@ -44,15 +40,9 @@ Download the File
     ${file_obj}=    Wait For    ${dl_promise}
     File Should Exist    ${file_obj}[saveAs]
 
-Check if file exists
-    [Arguments]    ${Downloaded_File}
-    File Should Exist    ${Downloaded_File}
-    Log    Excel downloaded to: ${Downloaded_File}
-
 Parse to JSON
     ${JSON_Data}=    ExcelToJson    ${Download_Dir}${/}challenge.xlsx
     RETURN    ${JSON_Data}
-    
 
 Fill the Form
     [Arguments]    ${Json_Data}
