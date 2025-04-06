@@ -1,0 +1,5 @@
+robotframework
+robotframework-browser
+pandas
+playwright
+openpyxl
